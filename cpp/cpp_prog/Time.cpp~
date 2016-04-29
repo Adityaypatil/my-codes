@@ -1,0 +1,44 @@
+#include<iostream>
+#include<time.h>
+using namespace std;
+
+class Time{	
+	private:
+			int m,h;
+	public: 
+		Time()
+		{
+			m=0;
+			h=0;
+		}
+		
+		Time(int m,int h)
+		{
+			this->m=m;	
+			this->h=h;	
+		}	
+		Time Add(const Time &T);  
+
+};
+
+Time Time::Add(const Time &T)
+		{
+			Time temp;
+			temp.h= this->h + T.h + (m+T.m)/60;
+			temp.m=(m+T.m)%60;
+		
+			return temp;
+		
+		}
+
+
+int main()
+{
+	Time t1(10,20),t2(5,50),t3;
+	cout<<"Time()";
+	t3=t1.Add(t2);
+	cout<< "Time()";
+	
+
+	return 0;
+}

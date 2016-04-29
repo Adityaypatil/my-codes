@@ -1,0 +1,52 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+
+
+struct symbol_table
+{
+
+	char symbol_name[50];
+	int address;
+	void val[30];//store any type of value
+	char type //def or undrfined
+        int length;
+         
+
+};
+
+
+struct literal_table
+{
+
+	int literal;
+        int address;  //the place where literal is defined or oso can take linenumber
+	void val[10]; //store any type of value
+
+
+};
+	
+	
+struct IIT
+{
+
+  char symbol_name[50];
+  int address //where needed to be replaced l8r 
+
+};
+
+
+struct error_table
+{
+
+	int address;
+
+	char error[80];
+};
+
+
+
+char buffer[80];
+int *IP;
+s

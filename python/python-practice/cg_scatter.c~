@@ -1,0 +1,26 @@
+#include<GL/glut.h>
+#include<GL/glu.h>
+#include<GL/gl.h>
+void scatter();
+int main(int argc,char **argv)
+{
+  glutInit(&argc,argv);
+  glutInitDisplayMode();
+  glutInitWindowSize();
+  glutInitWindowPosition();
+  glutCreateWindow("Scatter");
+  glutDisplayFunc(scatter);
+  glutMainLoop();
+}
+
+void scatter()
+{
+  float x[10]={0.2,1.2,2.1,0.1,0.3,0.5,0.7,0.8,0.9};
+  glClear(GL_COLOR_BUFFER_BIT);
+  glColor3f(1.0,0.0,0.0);
+  glbegin(GL_POINTS);
+  for(i=0;i<10;i++)
+    glVertex(x[i],x[i+1]);
+  glEnd();
+  glFlush();
+}

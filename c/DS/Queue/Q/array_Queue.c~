@@ -1,0 +1,19 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define size 10
+
+
+int Queue[size],front,rear;
+
+
+void init()
+{
+  front=-1;
+  rear=-1;
+}
+
+
+
+void enqueue(int data)
+{
+  

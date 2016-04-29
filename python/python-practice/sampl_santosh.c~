@@ -1,0 +1,9 @@
+#include<stdio.h>
+
+void main()
+{
+char str[100]="I AM AN INDIAN";
+char s1[20],s2[20],s3[20],s4[20];
+
+
+

@@ -1,0 +1,5 @@
+import math
+x=input("Enter the Value:")
+for i in range(x):
+	exp=1+((x**i)/math.factorial(i))
+print exp

@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+  int data;
+  struct node *next;
+}*top=NULL;
+
+
+
+void push(int data)
+{struct node *curr;
+  struct node *newnode=(struct node *)malloc(sizeof(struct node));
+  newnode->data=data;
+  newnode->next=NULL;
+
+
+  if(top==NULL)
+    {
+      top=newnode;
+      curr=newnode;
+    }
+  else
+    {
+      curr->next=newnode;
+      curr=curr->next;
+    } 
+
+
+
+}
+
+
+
+
+void display(struct node *top)
+{struct node *temp=top;
+
+  while(temp!=NULL)
+    {
+      printf("%d-->",temp->data);
+      temp--;
+    }
+}
+
+
+int main()
+{
+  push(10);
+  push(20);
+  push(30);
+
+  display(top);
+}
+

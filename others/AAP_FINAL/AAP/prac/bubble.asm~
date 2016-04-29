@@ -1,0 +1,36 @@
+section .rodata
+	msg db 20,10,1,40,30
+	msg2 db "%d",10,0
+
+section .text
+	global main
+	extern printf
+
+main:	mov rdx,5
+	mov rcx,rcx
+
+outer:	xor rax,rax
+
+
+lp2:	mov rbx,qword[msg+rax*4]
+	cmp rbx,dword[msg +(rax+1)*4]
+	jg swap
+
+swap_ret: inc rax
+	loop lp2
+	dec rdx
+	mov rcx,rdx
+	loop outer
+	mov rcx,5
+	mov rax,0
+
+display:
+	xor rax,rax
+	mov rdi,msg2
+	call printf
+
+swap:	mov rbx,qword[msg+rax*4]
+	mov rdx,qword[msg+(rax+1)*4]
+	mov qword[msg+rax*4],rdx
+	mov qword[msg+(rax+1)*4],rbx
+	jmp swap_ret

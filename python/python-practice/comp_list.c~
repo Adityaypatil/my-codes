@@ -1,0 +1,142 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+struct node
+{
+
+	int data;
+	struct nodev*prev;
+	struct node *next;
+}*start=NULL,*start1=NULL,*start2;
+
+
+void *creat(struct node *head,int data)
+{
+struct node *new,*curr;
+
+new=(struct node *)malloc(sizeof(struct node));
+new->data=data;
+new->prev=NULL;
+new->next=NULL;
+
+if(head == NULL)
+{
+head=new;
+curr= new;
+}
+else
+{
+curr->next=new;
+curr=new;
+}
+return head;
+}
+
+
+
+void disp(struct node *head)
+{
+struct node *temp1;//*temp2;
+	
+	temp1=head;
+	//temp2=start1;
+		while(temp1 !=NULL )
+		{
+			printf("%d--->",temp1->data);
+			temp1=temp1->next;
+		}
+
+printf("NULL\n");
+}
+
+void cmp_list()
+{
+struct node *temp,*temp1;
+temp=start;
+temp1=start1;
+int count=0,x =0;
+
+while(count < 9)
+{	
+if(temp->data == temp1->data)
+	{
+	temp=temp->next;
+	temp1=temp1->next;
+	x++;
+	}
+	count++;
+}
+if(count==x)
+
+printf("List are same\n");
+else
+printf("List are not same");
+
+
+}
+
+void cmp_first_n(int pos)
+{
+struct node *temp,*temp1;
+temp=start;
+temp1=start1;
+int count=0,x =0;
+
+while(count < pos)
+{	
+if(temp->data == temp1->data)
+	{
+	temp=temp->next;
+	temp1=temp1->next;
+	x++;
+	}
+	count++;
+}
+if(count==x)
+
+printf("First %d are same.\n",pos);
+else
+printf("First %d are not same.\n",pos);
+
+}
+
+void intersect_list()
+{
+
+
+}
+
+
+
+int main()
+{
+
+start=creat(start,21);
+start=creat(start,22);
+start=creat(start,23);
+start=creat(start,24);
+start=creat(start,25);
+start=creat(start,26);
+start=creat(start,27);
+start=creat(start,28);
+start=creat(start,29);
+
+disp(start);
+
+start1=creat(start1,11);
+start1=creat(start1,12);
+start1=creat(start1,13);
+start1=creat(start1,14);
+start1=creat(start1,25);
+start1=creat(start1,16);
+start1=creat(start1,17);
+start1=creat(start1,18);
+start1=creat(start1,19);
+
+disp(start1);
+
+//cmp_list();
+cmp_first_n(3);
+
+}

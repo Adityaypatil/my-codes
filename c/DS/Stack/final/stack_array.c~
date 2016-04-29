@@ -1,0 +1,32 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define SIZE 10
+
+
+int arr[SIZE],top=-1;
+
+
+void push(int data)
+{
+  if(!isFULL())
+    {
+      top++;
+      arr[top]=data;
+    }
+}
+
+
+
+int pop()
+{
+  if(!isEmpty())
+    {
+      ele=arr[top];
+      top--;
+    }
+}
+
+
+
+
+

@@ -1,0 +1,44 @@
+#include<stdio.h>
+
+void main()
+{
+int arr1[]={1,8,12},i=0,j=0,len,k=0;
+int arr2[]={3,5,10},temp[20];
+
+len=(sizeof(arr1)/4);
+len1=(sizeof(arr2)/4);
+maxlength=len+len1;
+
+/*
+
+
+//for(i=0;i<3;i++)
+//	{
+//	for(j=0;j<3;j++)
+while(k!=6)
+	{
+		if(arr1[i] < arr2[j])
+		{
+			temp[k]=arr1[i];
+			i++;
+			k++;		
+	
+		}
+		else
+		{
+			temp[k]=arr2[j];
+			j++;
+			k++;
+		}
+
+		
+	}
+
+
+for(k=0;k<6;k++)
+	{
+	printf("%d ",temp[k]);
+	}
+*/
+}
+

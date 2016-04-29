@@ -1,0 +1,26 @@
+section .data
+	msg db "%d number of arguments",10,0
+section .text
+	global main
+	extern puts,printf
+main:
+	push rsi
+	push rdi
+	sub rsp,8
+	push rsi
+	push rdi
+	mov rsi,rdi
+	mov rdi,msg
+	xor rax,rax
+	callp printf
+	pop rsi
+	pop rdi
+	mov rdi,[rsi]
+	call puts
+	add rsp,8
+	pop rsi
+	pop rdi
+	add rsi,8
+	dec rdi
+	jnz main
+	ret

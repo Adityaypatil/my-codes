@@ -1,0 +1,21 @@
+#include<iostream>
+#include"header1.h"
+
+using namespace std;
+
+int main()
+{
+  float area;
+  rectangle r;
+  area=r.calc_area();
+  r.Display(area);
+  
+  
+  rectangle r2(6.0,5.0);
+  area=r2.calc_area();
+  r2.Display(area);
+ 
+  rectangle r3=r2;
+  area=r3.calc_area();
+  r3.Display(area);
+ }

@@ -1,0 +1,82 @@
+#include<stdio.h>
+#include<stdlib.h>
+struct tree 
+{
+	int data;
+	struct tree *left;
+	struct tree *right;
+};
+int heightoftree(struct tree *root)
+{
+		int lh,rh;
+		if(root==NULL)
+		{
+			return 0;
+		
+		}
+		if(root!=NULL)
+		{	
+			lh=heightoftree(root->left);
+			rh=heightoftree(root->right);
+		}	
+		if(lh>rh)
+		{
+			return (lh+1);
+		}
+		else
+		{
+			return (rh+1);
+		}
+}		
+struct tree *createTree(int val)
+{
+	struct tree *temp;
+	temp=(struct tree*)malloc(sizeof(struct tree));
+	temp->data=val;
+	temp->left=NULL;
+	temp->right=NULL;
+	return temp;
+}
+void print(struct tree *root,int level)
+{
+	if(root==NULL)
+	{
+		return ;
+		
+	}
+	if(level==1)
+	{	
+		printf("%d",root->data);
+	}
+	if(level > 1)
+	{	
+			print(root->left,level-1);
+			print(root->right,level-1);
+	}
+}
+void levelorder(struct tree *root)
+{	
+	int h,i;
+	h=heightoftree(root);				
+	for(i=1;i<=h;i++)
+	{
+		print(root,i);
+	}
+
+}	
+main()
+{
+	struct tree *root=NULL;
+	int arr[10],sum,i,height;
+	root=createTree(1);
+	root->left=createTree(2);
+	root->right=createTree(3);
+	root->left->left=createTree(4);
+	root->left->right=createTree(5);	
+	root->right->left=createTree(6);
+	root->right->right=createTree(7);
+	printf("\n");	
+	height=heightoftree(root);
+	printf("Height=%d\n",height);
+	levelorder(root);
+}

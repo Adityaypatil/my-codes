@@ -1,0 +1,59 @@
+
+
+
+#include <stdio.h>
+#include <string.h>
+#include <math.h>
+#include <stdlib.h>
+
+int count(long int array[],long int size,long int value,long int min,long int max);
+
+int main() {
+
+    /* Enter your code here. Read input from STDIN. Print output to STDOUT */ 
+  long int i,j,value,num_occ,*ans;;
+    long int min=9999999,max=0,num;
+    
+    scanf("%ld",&num);
+    
+   long int array[num];
+    
+    for(i=0;i<num;i++)
+        {
+        scanf("%ld",&array[i]);
+			if(min>array[i])
+				min=array[i];
+			else
+				if(max<array[i])
+					max=array[i];
+        }
+   // printf("min %d %d\n",min,max);
+    ans=(long int *)malloc(sizeof(int)*(max-min));
+    
+    for(value=0,j=0; value<num; value++)
+      {
+	       ans[value] = count(array, num, value,min,max);
+	       
+       }
+       for(i=0;i<=max;i++)
+		printf("%ld " ,ans[i]);
+    
+    return 0;
+}
+
+int count(long int array[],long int size,long int value,long int min,long int max)
+    {
+   long int i, count=0;
+    
+   for (i=0; i<size; i++)
+    {
+	    if (array[i] == value)
+	   {
+		  ++count; /* it was found */
+	   }
+    }
+    
+return(count);
+}
+
+

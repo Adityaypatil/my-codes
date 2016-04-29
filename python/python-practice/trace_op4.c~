@@ -1,0 +1,11 @@
+#include<stdio.h>
+
+void main()
+{
+  int n=4;
+
+  switch(n):
+  default:printf("def");
+
+ case(4):printf("%d",n);
+   

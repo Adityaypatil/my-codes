@@ -1,0 +1,5 @@
+section .rodata
+	msg1 db "Enter no to be entered:%d",10,0
+	msg db "%d no is found",10,0
+
+	

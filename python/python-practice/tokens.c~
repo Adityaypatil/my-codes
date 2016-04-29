@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+main()
+{
+	char str[20]="mov eax,ebx";
+	char *p=str,t1[20],t2[20];
+	int i,len;
+	
+	
+	for(i=0;i<12;i++)
+	{
+		//t1[i]=str[i];
+		if(str[i]!=' ')
+		{
+			t1[i]=str[i];	
+		}
+		else
+		{	
+			t2[i]=str[i]; 
+		}
+	}
+	printf("%d\n",len);
+	printf("%s\n",t1);
+	for(i=0;i<12;i++)
+	{
+		printf("%s\n",t2);
+	}
+}
+

@@ -1,0 +1,56 @@
+
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+#include"structure.h"
+#include"search.c"
+struct MOTtable
+  {
+	char Mnemonic[6];
+	char Opcode[3];
+  };
+
+
+int main()
+{
+FILE *fp,*fp1,*fp2;
+
+	
+	fp = fopen("add1.asm","r");
+	if(fp == NULL)
+	{
+		printf("\nFile opening Error\n");
+		exit(0);
+	}
+	
+	// Filling Mnemonic Table
+	fp1 = fopen("instr.txt" , "r");
+
+	if(fp1 == NULL)
+	{
+		printf("\nFile Opening Error\n");
+		return 0;
+	}
+	
+		
+	while(!feof(fp1))
+	{
+		fscanf(fp1,"%s%s%s",);
+		//printf("%s %s %s\n",);
+		count++;
+		
+	}
+
+
+
+
+
+
+
+
+	fp2 = fopen("register.txt","r");
+	if(fp2 == NULL)
+	{
+		printf("\nFile Opening Error\n");
+		return 0;
+	}

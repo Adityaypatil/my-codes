@@ -1,0 +1,254 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+struct node
+{
+
+	int data;
+	struct node *next;
+}*start=NULL;
+
+
+void creat(int data)
+{
+struct node *new,*curr;
+
+new=(struct node *)malloc(sizeof(struct node));
+new->data=data;
+new->next=start;
+
+if(start == NULL)
+{
+start=new;
+curr= new;
+}
+else
+{
+curr->next=new;
+curr=new;
+}
+
+}
+
+
+
+void disp()
+{
+struct node *temp;
+//temp=start;
+/*printf("%d-->",temp->data);
+	temp=start->next;
+
+		while(temp!=start)
+		{	
+			
+			printf("%d--->",temp->data);
+			temp=temp->next;
+		}
+*/
+
+if(start !=NULL)
+{
+temp=start;
+do{
+	printf("%d --> ",temp->data);
+	temp=temp->next;
+}while(temp!=start);
+}
+printf("NULL\n");
+}
+
+
+void add_last(int data)
+{
+struct node *last,*temp;
+temp=start;
+
+last=(struct node *)malloc(sizeof(struct node ));
+last->data=data;
+last->next=start;
+
+while(temp->next !=start)
+	{
+	temp=temp->next;
+	}
+	//temp=temp->next;
+
+temp->next=last;
+last->next=start;
+
+
+temp=start->next;
+disp();
+/*
+while(temp !=start)
+	{
+	printf("%d-->",temp->data);
+	temp=temp->next;
+	}
+
+printf("NULL\n");
+
+}
+*/
+
+}
+void del_first()
+{
+	struct node *curr,*temp;
+	temp=start;
+	curr=start;	
+if(start !=NULL)
+{
+temp=start;
+
+while(temp->next!=start)
+{
+	temp=temp->next;
+}
+
+/*do{
+	
+	temp=temp->next;
+
+}while(temp!=start);
+*/
+temp->next=start->next;
+free(start);
+start=start->next;
+}
+}
+
+void del_pos(int pos)
+{
+struct node *temp;
+temp=start;
+int i;
+for(i=1;i<pos;i++)
+{
+temp=temp->next;
+}
+
+temp->next=temp->next->next;
+
+
+}
+
+void add_pos(int data,int pos)
+{
+struct node *temp;
+temp=start;
+int i=0;
+
+
+
+struct node *new1;
+new1=(struct node *)malloc(sizeof(struct node));
+new1->data=data;
+new1->next=NULL;
+
+while( i < pos)
+	{
+	temp=temp->next;
+	i++;
+	}
+
+	//temp->next=new1;
+	new1->next=temp->next;
+	temp->next=new1;
+}
+
+void remove_pos(int pos)
+{
+struct node *temp;
+temp=start;
+int i=1;
+while(i<pos)
+	{
+	temp=temp->next;
+	i++;
+	}
+temp->next=temp->next->next;
+
+
+
+
+}
+
+void first_occ(int data)
+{
+struct node *temp;
+temp=start;
+int cnt=0;
+while(temp->data != data)
+	{
+		cnt++;	
+		temp=temp->next;
+	}
+printf("Occurs at:%d\n",cnt);
+
+}
+
+void last_occ(int data)
+{
+struct node *temp,*temp2;
+temp=start;
+temp2=start;
+int c=1,last=0;
+
+while(temp->next !=start)
+{
+{
+if(temp->data==data)
+{
+last=c;
+}
+temp=temp->next;
+c++;
+}
+if(last == 0)
+	printf("No occureence");
+else
+	printf("the data is at the index %d\n",last);
+
+}
+
+
+}
+
+void concat()
+{
+struct node *temp1,*temp2;
+temp1=start;
+temp2=start1;
+
+
+
+
+}
+
+int main()
+{
+
+creat(11);
+creat(12);
+creat(13);
+creat(14);
+creat(15);
+creat(16);
+
+creat(12);
+creat(18);
+
+disp();
+//add_last(15);
+//del_first();
+//del_pos(2);
+add_pos(44,3);
+//remove_pos(5);
+disp();
+//first_occ(15);
+//last_occ(12);
+
+}

@@ -1,0 +1,66 @@
+#include"main.h"
+#include "Working_sourcecode.h"
+#include "Data_section.h"
+#include "Text_section.h"
+#include "error_table.h"
+#include "error_tabdisplay.h"
+#include "is_consn.h"
+#include "insert_in_symbol.h"
+#include "symtab_dispaly.h"
+#include "Forward_reff.h"
+#include "int_instr.h"
+#include "insert_inst.h"
+#include "wrt_obj.h"
+#include "sort.h"
+#include "cond.h"
+
+
+int main(int argc ,char *argv[])
+{
+
+  input_file=fopen(argv[1],"r");
+  obfile=fopen(argv[2],"w");
+
+  Working_On_SourceCode();
+  Writing_Into_ObjectCode();
+
+  fclose(input_file);
+ 
+  fclose(obfile);
+  
+  symboltab_display();
+  errortab_display();
+  
+  return 0;
+}
+
+//output
+
+/*~/Downloads/Pass1/Trial$ ./a.out fact.asm new
+
+
+** Printing SYMBOL TABLE  **
+
+----------------------------------------------------------------------
+ Serial  ||    Name    ||    Defined    ||     Used    ||    Address
+----------------------------------------------------------------------
+ 0      |       main:   |       1       |       0       |       2
+
+ 1      |       next:   |       1       |       0       |       3
+
+ 2      |       n1      |       1       |       0       |       1
+
+ 3      |       Exit:   |       1       |       0       |       4
+
+
+
+** Printing ERROR TABLE **
+----------------------------------------------------------------------
+Serial  ||   Line_no    ||    Error_description
+----------------------------------------------------------------------
+ 3       |      3        |      Memory as first operand not allowed
+ 2       |      3        |      Lvalue Error
+ 1       |      3        |       Type mismatch
+
+
+*/

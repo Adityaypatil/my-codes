@@ -1,0 +1,18 @@
+void errortab_display()
+
+{
+printf("\n\n** Printing ERROR TABLE ** \n");
+  dynamicErrorTable *head=error_table_head;
+   
+   printf("----------------------------------------------------------------------\n");
+   printf("Serial  ||   Line_no    ||    Error_description    \n");
+
+  printf("----------------------------------------------------------------------\n"); 
+
+  while(head)
+    {
+      printf(" %d\t | \t%d\t | \t%s\n",head->sr_no,head->line_no,staticErrorTable[head->err_no].description);
+      head= head->next;
+      
+    }
+}

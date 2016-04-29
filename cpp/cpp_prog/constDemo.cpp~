@@ -1,0 +1,21 @@
+#include<iostream>
+using namespace std;
+
+class number
+{
+  const int no=10;
+public:
+  void unpdatenumber()
+  {
+    no=20;
+  }
+  void Display()
+  {
+    cout<<no;
+  }
+};
+main()
+{
+  number n;
+  n.Display();
+}

@@ -1,0 +1,20 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+void main()
+{
+int *aa=NULL,a,b;
+a=2;
+b=4;
+aa=add(a,b);
+printf("addision is %d",*aa);
+}
+
+int* add(int a,int b)
+{
+int *sum;
+sum=(int*)malloc(sizeof(int));
+sum=a+b;
+
+return sum;
+}

@@ -1,0 +1,11 @@
+section .rodata
+	msd db "Minimum no is %d",10,0
+
+section .data
+	array dq 10,20,30,5,40,-1
+
+section .text
+	global main
+	extern printf
+
+main: 

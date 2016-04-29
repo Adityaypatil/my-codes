@@ -1,0 +1,20 @@
+#include<stdio.h>
+
+
+int main(int argc, char *argv[])
+{
+int i,sum;
+
+if (argc !=3)
+	{
+	printf("Do coreect input");
+	}
+
+printf("The sum is :");
+
+for(i=1;i<argc;i++)
+
+	sum = sum + atoi(argv[i]);
+printf("%d\n",sum);
+
+}

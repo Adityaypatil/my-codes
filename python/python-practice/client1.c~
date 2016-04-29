@@ -1,0 +1,44 @@
+#include <sys/socket.h>
+#include <sys/types.h>
+#include <netinet/in.h>
+#include <netdb.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdlib.h>
+#include <unistd.h>
+#include <errno.h>
+#include <arpa/inet.h> 
+
+
+int main(int argc,char *argv[])
+{
+int sock_fd;
+
+char recvbuff[1024];
+
+struct sockaddr_in client_sock;	
+
+
+sock_fd=socket(AF_INET,SOCK_STREAM,0);
+
+//bzero(&client_sock,sizeof(client_sock));
+memset(&client_sock,'0',sizeof(client_sock));
+
+client_sock.sin_family = AF_INET;
+client_sock.sin_port = htons(2223);
+
+printf("%s",argv[1]);
+inet_pton(AF_INET,argv[1],&client_sock.sin_addr);// convert ip address into 32bit address save into client addr
+
+//	while(1)
+	{
+		printf("\n==>>>%d\n",sock_fd);
+		connect(sock_fd,(struct sockaddr *)&client_sock,sizeof(client_sock));
+
+		//write(sock_fd,"Hello",sizeof("hello"));
+		read(sock_fd,recvbuff,sizeof(recvbuff)-1);
+
+		printf("===>>>%s<==\n",recvbuff);
+	} 
+
+}

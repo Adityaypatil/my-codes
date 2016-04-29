@@ -1,0 +1,21 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+int d1=20;
+int d2=20;
+int result;
+
+
+int main()
+{
+asm ("addl %%edx,%%ecx\n\t"
+	" movl %%ecx,%%eax\n\t"
+		
+		:"=a"(result)
+		:"d"(d1),"c"(d2));
+
+		printf("Result is :%d\n",result);
+
+return 0;
+}

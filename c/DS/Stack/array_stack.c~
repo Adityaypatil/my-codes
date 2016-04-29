@@ -1,0 +1,63 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define SIZE 10
+int stack[SIZE];
+int top=-1;
+
+int isEmpty()
+{
+  if(top==-1)
+    return 1;
+  else 
+    return 0;
+}
+
+
+
+int isFull()
+{
+  if(top==SIZE-1)
+    return 1;
+  else
+    return 0;
+}
+
+
+
+void push(int no)
+{
+  if(!isFull())
+    {
+      stack[++top]=no;       
+
+     }
+  else
+    {
+      printf("stack is full\n");
+    }
+}
+
+
+
+void display()
+{
+  
+  while(top!=-1)
+    {
+      printf("%d ",stack[top]);
+    }
+  top--;
+
+
+}
+
+
+int main()
+{
+  push(10);
+  push(30);
+  push(50);
+
+  display();
+  return 0;
+}

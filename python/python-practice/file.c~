@@ -1,0 +1,21 @@
+#include<stdio.h>
+
+void main()
+{
+
+char data;
+FILE *fp;
+
+fp=fopen("abc.txt","r");
+
+//data=fgetc(fp);
+
+while (data != "y")
+{
+printf ("%c",data);
+data = fgetc(fp);
+}
+
+    fclose(fp);
+
+}

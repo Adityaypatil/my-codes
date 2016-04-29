@@ -1,0 +1,65 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+
+strcut node
+{
+  int data;
+  struct node *next;
+}*start=NULL;
+
+
+struct node *insert(struct node *start,int data)
+{
+
+  struct node *newnode,*curr;
+  curr=start;
+
+  newnode=(struct node *)malloc(sizeof(struct node));
+  newnode->data=data;
+  newnode->next=NULL;
+
+
+  if(start==NULL)
+    {
+      start=newnode;
+      curr=newnode;
+    }
+
+  else
+    {
+      curr->next=newnode;
+      curr=newnode;
+    }
+
+  return start;
+}
+
+
+
+void display(stryct node *start)
+{
+struct node *temp=start;
+
+  while(temp!=NULL)
+    {
+      printf("%d-->",temp->data);
+      temp=temp->next;
+    }
+  printf("NULL\n");
+}
+
+
+
+int main()
+{
+  start=insert(start,10);
+  insert(start,20);
+  insert(start,30);
+  insert(start,70);
+
+  display(start);
+
+  
+}

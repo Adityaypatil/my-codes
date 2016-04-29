@@ -1,0 +1,72 @@
+#include<stdio.h>
+
+void merge(int *arr1,int start,int middle,int end);
+
+
+void main()
+{
+int start,middle,end;
+int arr1[]={12,1,8,10,5,3},i=0,j=0,len,k=0,temp[20];
+
+len=(sizeof(arr1)/4);
+
+med(arr1[],0,len-1);
+merge(arr1[],start,middle,end);
+
+printf("Sorted array:");
+for(k=0;k<len;k++)
+	{
+	printf("%d ",temp[k]);
+	}
+
+}
+
+
+void med(int arr1[],int start,int end)
+{
+int middle;
+if(start < end)
+	 {
+	middle=(start+end)/2; 
+	med(arr1,start,middle);
+	med(arr1,middle+1,end);
+	merge(arr1[],start,middle,end);
+	}
+}
+
+
+void merge(int arr1[],int start,int middle,int end)
+{
+	int i,j,k,temp[20];
+	int a=start,b=middle+1;
+
+while((a<=middle)&&(j<=end))
+	{
+		if(arr1[a] < arr1[j])
+		{
+			temp[k]=arr1[i];
+			i++;
+			k++;		
+	
+		}
+		else
+		{
+			temp[k]=arr1[j];
+			j++;
+			k++;
+		}
+
+		
+	}
+
+while(j<=end)
+	{
+	temp[k]=arr1[j];
+	k++;j++;	
+	}
+while(a<=start)
+	{
+	temp[k]=arr1[i];
+	k++;i++;	
+	}
+	}

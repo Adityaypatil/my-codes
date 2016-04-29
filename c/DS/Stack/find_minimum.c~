@@ -1,0 +1,56 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+
+
+struct node
+{
+  int data;
+  struct node *next;
+}*top=NULL;
+
+
+
+void push(struct node **top,int data)
+{
+
+  struct node *newnode=(struct node *)malloc(sizeof(struct node ));
+
+  if(!newnode) return NULL;
+
+  newnode->data=data;
+  newnode->next=*top;
+  *top=newnode;
+}
+
+
+
+
+int pop(struct node **top)
+{int ele;
+  struct node *temp;
+
+  temp=*top;
+  *top=(*top)->next;
+  ele=temp->data;
+  free(temp);
+
+  return ele;
+}
+
+
+int main()
+{
+  push(&top,5);
+  push(&top,2);
+  push(&top,7);
+  push(&top,2);
+  push(&top,1);
+  push(&top,1);
+  push(&top,4);
+
+  display(top);
+
+  return 0;
+}

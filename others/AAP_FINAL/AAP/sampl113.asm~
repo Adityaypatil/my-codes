@@ -1,0 +1,28 @@
+section .rodta
+	msg db "Sum if num :",10,0
+
+section .data
+	array dq 10,20,30,40,50,-1
+
+section .text
+	global main
+	extern printf
+
+main:
+	xor rax,rax
+	mov rbx,array
+	mov rcx,0
+l:	mov rax,4
+	add rbx,rax
+	inc rcx
+	cmp qword[rbx],-1
+	je last
+	add rdi,rbx
+	jmp l
+last:	xor rax,rax
+	call printf
+
+
+
+
+	ret

@@ -1,0 +1,12 @@
+a = 131
+
+def dig(a):
+    remainder =0
+    if(a != 0):
+        remainder = a % 10
+        s = s + remainder
+        a = a / 10
+   
+ print s
+
+dig(a)

@@ -1,0 +1,77 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+typedef unsigned int BOOL;
+#define TRUE 1
+#define FALSE 0
+
+
+struct node
+{
+int data;
+struct node *next;
+}*head=NULL;
+
+BOOL isStackEmpty()
+{
+	if(head==NULL)
+	{
+	return TRUE;
+	}
+	else
+	{
+	return FALSE;		
+	}
+
+}
+
+void push(int data)
+{
+struct node *newnode;
+newnode=(struct node *)malloc(sizeof(struct node));
+newnode->data=data;
+newnode->next=NULL;
+
+if(iStackEmpty()==TRUE)
+{
+	head=newnode;
+return;
+}
+else
+{
+struct node *temp=NULL;
+temp=head;
+
+while(temp->next !=NULL)
+{
+	temp=temp->next;
+}
+temp->next=newnode;
+	
+}
+
+}
+
+
+
+void display()
+{
+struct node *temp;
+temp=head;
+while(temp !=NULL)
+{
+printf("%d-->",temp->data);
+temp=temp->next;
+}
+
+}
+
+int main()
+{
+push(10);
+push(20);
+push(30);
+display();
+
+}
+

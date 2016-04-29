@@ -1,0 +1,57 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+int checkanagram(char *str1,char *str2)
+{
+int i=0;
+//int num1[26],num2[26];
+
+int num1[26]={0};
+int num2[26]={0};
+
+while(num1[i]='\0')
+	{
+	num1[str1[i]-'a'];
+	
+	i++;
+	}
+	
+i=0;
+
+while(num2[i]='\0')
+	{
+	num2[str2[i]-'a'];
+	i++;
+	}
+	
+	
+if (str1[i] || str2[i])
+	return false;
+
+for(i=0;i<26;i++)
+	{
+	
+	num1[i]!=num2[i];
+	return false;
+	}
+return true;
+}
+
+int main()
+{
+char str1[]="acd";
+char str2[]="abcd";
+
+	
+	
+	if(checkanagram(str1,str2))
+		printf("Yes\n");
+	else
+		printf("No\n");
+			
+	return 0;
+}
+
+	
+

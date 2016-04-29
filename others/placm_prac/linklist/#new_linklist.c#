@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+  int data;
+  struct node *next;
+};
+struct node *createnode(int data)
+{
+  struct node *temp=(struct node *)malloc(sizeof(struct node));
+  temp->data=data;
+  temp->next=NULL;
+
+  return temp;
+}
+
+struct node *createlist(int data)
+{
+  struct node *temp,*temp1,*head=NULL;
+  int n=5;
+  while(n)
+    {
+      temp=createnode(data);
+      if(head==NULL)
+        {
+	  head=temp;
+	  temp1=temp;
+	}
+      else
+	{
+	  temp1=temp;
+	  temp1=temp1->next;
+	}
+      n--;
+    }
+  return head;
+}
+void disp(struct node *head)
+{
+}
+
+struct int main()
+{
+  struct node *head=NULL;
+  head=createlist(1);
+  createlist(2);
+  createlist(3);
+return 0;
+}

@@ -1,0 +1,34 @@
+section .rodata
+	msg db "Enter no to be search:%d",10,0
+	msg2 db "No is found",10,0
+	msg3 db "No not found",10,0
+	
+section .data
+	msg1 dq 10,20,30,40,50,60,-1
+	no dq 30
+	
+section .text
+	global main
+	extern printf
+
+main: 
+	xor rsi,rsi
+	xor rcx,rcx
+
+	mov rdx,no
+	mov rsi,[msg1+rcx*8]
+	inc rcx
+
+lp:	mov rbx,[msg1+rcx*8]
+	cmp rbx,-1
+	
+	cmp rdx,rbx
+	je last
+	jmp lp
+	
+	
+last:	xor rax,rax
+	mov rdi,msg2
+	call printf
+
+	ret

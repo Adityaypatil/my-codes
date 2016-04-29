@@ -1,0 +1,11 @@
+import os
+
+path_name="/home/AAP_FINAL"
+
+for (path_name,dirname,file_name) in os.walk(path_name):
+
+print path
+print dir
+print file
+
+

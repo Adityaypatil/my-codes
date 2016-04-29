@@ -1,0 +1,17 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+main()
+{
+  int data1= 30,data2=40;
+  int max;
+  asm("cmp %%rdx,%%rcx\n\t"
+      "jg m1\n\t"
+      "m1:"
+      "m1:\n\t"
+      "mov %%rcx,%%rax"
+      :"=a"(max)
+      :"d"(data1),"c"(data2)
+      );
+
+)

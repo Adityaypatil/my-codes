@@ -1,0 +1,7 @@
+#include<stdio.h>
+
+main()
+{
+fork();
+printf("\nThe PID is %d\n",getpid());
+}

@@ -1,0 +1,33 @@
+section .rodata
+	msg db "Palindrome"
+	msg2 db "Not palindrome"
+	
+section .data
+	n dd 12321
+	p dd 10
+	
+section .bss
+	a resd 1
+	l resd 10
+
+section .text
+	global main
+	extern printf
+
+main:	xor rax,rax
+	xor rbx,rbx
+	xor rcx,rcx
+	xor rdx,rdx
+	mov rbx,l
+	mov rax,qword[n]
+
+loop:	cmp rax,0
+	jmp loop2
+	div qword[p]
+	mov qword[l],rdx
+	add rbx,4
+	xor rdx,rdx
+
+	jmp loop1
+
+loop2:	

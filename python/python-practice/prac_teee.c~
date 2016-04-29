@@ -1,0 +1,63 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+struct tree
+{
+int data;
+struct tree *left,*right;
+};
+
+void insert(struct tree **root,int data)
+{
+	struct tree *temp=NULL;
+	
+	if(*root=NULL)
+	{
+	temp=(struct tree*)malloc(sizeof(struct tree));
+	temp->left=temp->right=NULL;
+	temp->data=data;
+	*root=temp;
+	}
+	
+	if(data < (*root)->data)
+		{
+			insert(&((*root)->left),data);
+		}
+	else if(data  > (*root)->data)
+		{
+			insert(&((*root)->right),data);	
+		}	
+		
+	
+}
+
+void inorder(struct tree *root)
+{
+if(root!=NULL)
+	{
+	inorder(root->left);
+	printf("%d-->",root->data);
+	inorder(root->right);
+	
+	}
+
+}
+int main()
+{
+struct tree *root;
+root=NULL;
+
+	insert(&root,10);
+	insert(&root,20);
+	insert(&root,15);
+	insert(&root,80);
+	insert(&root,71);
+	insert(&root,99);
+
+	inorder(root);
+
+
+return 0;
+}
+

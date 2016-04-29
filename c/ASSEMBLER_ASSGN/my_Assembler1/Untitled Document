@@ -1,0 +1,3 @@
+sextion .text
+label:
+	eax eax,10

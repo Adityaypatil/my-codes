@@ -1,0 +1,9 @@
+lis=[10,10,10,10]
+length=len(lis)
+
+def add(lis):
+	s = 0
+	for i in range (length-1):
+		s = s + add(lis[i])
+	print s
+

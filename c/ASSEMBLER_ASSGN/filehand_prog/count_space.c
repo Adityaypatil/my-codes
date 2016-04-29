@@ -1,0 +1,28 @@
+#include<stdio.h>
+
+void main()
+{
+int count =0,cnt;
+
+FILE *fp;
+char ch;
+fp=fopen("add.asm","r");
+
+ch=fgetc(fp);
+
+while(1)
+{
+if(ch == EOF)
+	 break;
+if(ch == ' ')
+	count++;
+	
+if(ch == '\t')
+	cnt++;
+
+ch=fgetc(fp);
+}
+fclose(fp);
+printf("count is:- %d\n",count);
+printf("Total lines :-%d",cnt);
+}

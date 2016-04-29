@@ -1,0 +1,37 @@
+#include<iostream>
+using namespace std;
+
+class rectangle{
+	private: int l;
+			int b;
+			int r;
+	public:		
+	rectangle()
+	{
+		l=5;
+		b=10;
+		r=l*b;
+	}
+	rectangle(int l,int b)
+	{
+		this->l=l;
+		this->b=r;
+		this->r=l*b;
+	}
+	void disp()
+	{
+		cout <<"ARea is "<<r;
+	}
+
+};
+
+int main()
+{
+	rectangle r1;
+	rectangle r2(10,10);
+	r1.disp();
+	r2.disp();
+	rectangle r3=rectangle(5,5);
+	r3.disp();
+	return 0;
+}

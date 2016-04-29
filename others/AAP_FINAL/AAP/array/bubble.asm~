@@ -1,0 +1,36 @@
+section .rodata
+	msg db "Sorted array is %d",10,0
+
+section .data
+	array dq 10,5,20,4,32,54,6,-1
+
+section .text
+	global main
+	extern printf
+
+main:
+	xor rax,rax
+	xor rbx,rbx
+	xor rcx,rcx
+	mov rbx,array
+	mov rcx,array
+
+outer: 	cmp qword[rbx],-1
+	je exit
+
+inner:
+	cmp qword[rcx],-1
+	je end_inner_lp
+	cmp qword[rcx],qword[rbx]
+	jmp swap
+	add rcx,8
+	jmp inner_lp
+end_inner_lp:	
+	add rbx,8
+	jmp outer_lp
+
+swap:
+	mov qword[rax+rbp*8],qword[rcx]
+	add rax,8
+	add rbx,8
+	jmp inner

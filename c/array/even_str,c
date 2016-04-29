@@ -1,0 +1,21 @@
+#include<stdio.h>
+
+void main()
+{
+char str[20];
+
+printf("Enter the string:");
+scanf("%s",str);
+even(str);
+return 0;
+}
+
+void even(cha src)
+{
+int i;
+
+for(i=2;i<strlen(src);i=i+2)
+{
+	printf("%s",src[i]);
+}
+}

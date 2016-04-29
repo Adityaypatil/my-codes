@@ -1,0 +1,30 @@
+section .rodta
+	 msg db "*",10,0
+
+section .data
+	n dq 10
+
+section .text
+	global main
+	extern printf
+
+main:
+	mov rax,0
+	mov rbx,0
+
+lp1:	cmp rax,qword[n]
+	ja exit
+lp2:	cmp rbx,rax
+	ja lp
+	jmp print
+	add rbx,8
+	jmp lp2
+
+print:	xor rax,rax
+	mov rdi,msg
+	call printf
+	
+lp:	add rax,8
+	jmp lp1
+	
+exit:	ret

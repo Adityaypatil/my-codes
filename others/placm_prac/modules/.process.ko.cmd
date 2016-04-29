@@ -1,0 +1,1 @@
+cmd_/home/adi/placm_prac/modules/process.ko := ld -r -m elf_x86_64 -T /usr/src/linux-headers-3.13.0-57-generic/scripts/module-common.lds --build-id  -o /home/adi/placm_prac/modules/process.ko /home/adi/placm_prac/modules/process.o /home/adi/placm_prac/modules/process.mod.o

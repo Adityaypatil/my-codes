@@ -1,0 +1,50 @@
+#include<stdio.h>
+#include<stdlib.h>
+#define SIZE 10
+int Queue[SIZE];
+
+
+struct node
+{
+  int data;
+  struct node *next;
+}*start=NULL;
+
+int isEmpty()
+{
+  
+  
+
+
+}
+
+
+int push(int no)
+{
+
+
+
+}
+
+
+int pop()
+{
+
+
+
+
+
+
+}
+
+
+
+
+
+
+int main()
+{
+
+
+  return 0;
+}

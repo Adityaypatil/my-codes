@@ -1,0 +1,10 @@
+lis=[10,10,10,10]
+length=len(lis)
+
+def add(lis):
+	s = 0
+	for i in range (length):
+		s = s + lis[i]
+	print "Addition is %d" % (s)
+
+add(lis)

@@ -1,0 +1,26 @@
+section .rodata
+	msg db "Hello pucsd..",10,0
+	msg2 db "Copied string is :%s",10,0
+
+section .bss
+	msg3 resb 50
+
+section .text
+	global main
+	extern printf
+
+main:	xor rsi,rsi
+	mov rsi,msg
+	mov rdi,msg3
+	xor rcx,rcx
+
+lp:	cmp byte[rsi],0
+	jz lp3
+	inc rcx
+	inc esi
+	jmp lp
+
+lp3:	mov rsi,msg
+	mov rdi,msg2
+	xor rax,rax
+	call printf

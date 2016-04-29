@@ -1,0 +1,27 @@
+#include<stdio.h>
+
+
+
+void swap(char *t1,char *t2)
+{
+
+char *t;
+
+t=t1;
+t1=t2;
+t2=t;
+printf("\n(%s) (%s)\n",a[0],a[1]);
+}
+
+
+void main()
+{
+char *a[2]={"hello","string"};
+
+swap(a[0],a[1]);
+
+//printf("\n(%s) (%s)\n",a[0],a[1]);
+
+
+}
+

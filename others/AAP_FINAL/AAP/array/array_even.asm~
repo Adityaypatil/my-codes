@@ -1,0 +1,28 @@
+section .rodata
+	msg  db "Even numbers from array: %d",10,0
+	msg1 db "Odd numbers from array: %d",10,0
+
+section .data
+
+	array dq 2,3,4,5,6,7,8,-1
+
+section .text
+	global  main
+	extern printf
+
+main:   mov rbx,2
+	mov rax,array
+
+lp1:	cmp qword[rbx],-1
+	je exit
+
+	div rbx
+	cmp rdx,0
+	je even
+	add rax,8
+	jmp lp1
+	
+even:	xor rax,rax
+	mov rsi,rax
+	mov rax,rdi
+	call printf

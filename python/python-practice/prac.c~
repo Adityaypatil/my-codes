@@ -1,0 +1,11 @@
+#include<stdio.h>
+
+enum Switch {off,on};
+
+main()
+{
+	enum Switch s1 =off;
+	enum Switch s2 = s1,s3=off2;
+	printf("\n %d %d %d\n",s1,s2,s3);
+}
+

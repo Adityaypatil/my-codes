@@ -1,0 +1,42 @@
+#include<stdio.h>
+#include<stdlib.h>
+char t1[20];
+void check_file_format(char fname[20])
+{
+	char *p;t1[20];	
+	int i;
+	p=fname;
+	i=0;
+	while(*p!='\0')
+	{	
+	while(*p!='.')
+		{		
+			//t1[i]=*p;
+			//i++;
+			p++;
+		}
+		while(*p!='\0')
+		{
+			t1[i]=*p;
+			i++;
+			p++;	
+		}
+		p++;		
+	}
+	if(strcmp(t1,".asm")!=0)
+	{
+		printf("Invalid file format\n");
+		printf("Enter valid file format(.asm)");
+		exit(0);
+	}	
+}
+main()
+{
+	FILE *fp;
+ 	char fname[20];	
+ 	printf("Enter the file name:");
+	scanf("%s",fname);
+	
+	check_file_format(fname);
+
+}

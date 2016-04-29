@@ -1,0 +1,16 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+int main()
+{
+  head1=insert(head1,10);
+  head1=insert(head1,20);
+  head1=insert(head1,30);
+  head1=insert(head1,40);
+  head1=insert(head1,55);
+
+  head2=insert(head2,50);
+  head2=insert(head2,35);
+  head2=insert(head2,45);
+  

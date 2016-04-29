@@ -1,0 +1,23 @@
+#include<stdio.h>
+
+
+
+
+
+
+
+
+
+int main()
+{
+int arr[]={13,2,10,5,15,6,17,11};
+int i,size;
+
+size=sizeof(arr)/sizeof(arr[0]);
+
+mergesort(arr,0,size-1);
+for(i=0;i<size;i++)
+	printf("%d ",arr[i]);
+	
+return 0;
+}

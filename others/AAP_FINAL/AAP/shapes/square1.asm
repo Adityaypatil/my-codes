@@ -1,0 +1,65 @@
+%macro pri 1
+	push rax
+	mov rdi,%1
+	xor rax,rax
+	call printf
+	pop rax
+%endmacro
+
+%macro sys 1
+	push rax
+	mov rdi,%1
+	xor rax,rax
+	call system
+	pop rax
+%endmacro
+		
+section .rodata
+	msg2 db "*",0
+	clr db "clear",0
+	msg db "sleep 0.1",0
+		
+section .data
+	n dq 15
+	nl db " ",0
+	nn db 10,0
+section .text
+	global main
+	extern printf,scanf,system
+
+main:	
+	mov rbx,qword[n]
+	mov r9,qword[n]
+
+	mov r10,0
+
+ll:	cmp rbx,0
+	je ll1
+	
+;;	sys msg
+	pri msg2
+	pri nl
+	
+	dec rbx
+	jmp ll
+
+ll1:	cmp r9,0
+	je end
+	
+;;	sys msg
+	pri msg2
+	pri nn
+	
+	dec r9
+	jmp ll1
+end:
+	
+	;;sys clr
+	;;inc r10
+	;;mov rbx,qword[n]
+		
+	;;jmp lll
+	
+	ret
+
+

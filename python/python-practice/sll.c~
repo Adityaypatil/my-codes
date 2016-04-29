@@ -1,0 +1,79 @@
+#include<malloc.h>
+
+struct node 
+{
+	int data;
+	struct node *next;
+};
+
+int insert(struct node **head,int number)
+{
+	struct node *temp;
+	temp=(struct node *)malloc(sizeof(struct node));
+	temp->data=number;
+	temp->next=*head;
+	*head=temp;
+}
+
+int display(struct node *head)
+{
+	struct node *temp;
+	temp=head;
+	while(temp!=NULL)
+	{
+		printf("%d ->",temp->data);
+		temp=temp->next;
+	}
+}
+
+int sort(struct node *head)
+{
+	int b;
+	
+	struct node *temp;
+	struct node *temp1;
+	struct node *swap;
+	swap=(struct node *)malloc(sizeof(struct node));
+	temp1=head->next;
+	
+	while(temp1!=NULL)
+	{
+		temp=head;
+		while(temp!=NULL)
+		{
+			if(temp->data > temp1->data)
+			{
+			swap->data=temp1->data;
+			temp1->data=temp->data;
+			temp->data=swap->data;
+			}
+			
+		temp=temp->next;
+		}
+		temp1=temp1->next;
+		//temp=temp->next;	
+	}
+		
+}				
+	
+	
+int main()
+{
+	struct node *first=NULL;
+	
+	insert(&first,10);
+	insert(&first,60);
+	insert(&first,40);
+	insert(&first,90);
+	insert(&first,60);
+	insert(&first,90);
+	
+	//display(first);
+	sort(first);
+	display(first);
+	
+	return 0;
+}
+
+	
+	

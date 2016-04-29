@@ -1,0 +1,28 @@
+#include <stdio.h>
+//#include <iostream>
+//using namespace std;
+
+class calculator
+{
+	public:
+			int no1,no2,ans;
+
+			void add()
+			{
+				ans=no1+no2;
+			}
+
+};
+
+int main()
+{
+     calculator obj1;
+	
+	//obj.add();
+	printf("ENter two nos:");
+	scanf("%d %d",&obj1.no1,&obj1.no2);
+	obj1.add();
+	printf("Addition is :%d",obj1.ans);
+
+return 0;	
+}

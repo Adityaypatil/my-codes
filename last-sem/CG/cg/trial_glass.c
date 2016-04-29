@@ -1,0 +1,116 @@
+ #include<stdio.h>
+#include<string.h>
+#include<GL/glut.h>
+#include<math.h>
+
+GLUquadricObj *p;
+GLfloat anglex=0;
+GLfloat angley=0;
+GLfloat anglez=0;
+
+float width = 700;
+float height = 600;
+
+void base(void);
+void init(void);
+void display(void);
+void reshape (int width, int height);
+
+
+void base (void) {
+int i;
+glColor3f(0.0, 0.0, 1.0);
+glPushMatrix();
+glRotatef (-90.0, 1.0, 0.0, 0.0);
+gluQuadricDrawStyle(p, GLU_FILL);
+gluCylinder (p,2, 3,6, 20, 20);
+glPopMatrix();
+glColor4f(0.0, 1.0, 1.0,1.0);
+glPushMatrix();
+gluQuadricDrawStyle (p, GLU_FILL);
+glTranslatef (0.0, 0, 0.0);
+glRotatef (-90.0, 1, 0.0, 0.0);
+gluDisk (p, 0, 2, 20, 20);
+glPopMatrix();
+}
+void display(void) 
+{
+  glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+  glLoadIdentity();
+  glEnable(GL_BLEND);
+  gluLookAt(0, 8,10, 0.0, 0, 0.0, 0.0, 1.0, 0.0);
+  glTranslatef (0,  0, 0);
+  
+  glRotatef(anglex, 1, 0, 0);
+  glRotatef(angley, 0, 1, 0);
+  glRotatef(anglez, 0, 0, 1);
+
+  base();
+  glutSwapBuffers();
+}
+void keyboard (unsigned char key, int x, int y) 
+{
+switch (key) 
+  {
+  case 27:
+  exit(0);
+  case 'x':
+    anglex-=5;
+    break;
+  case 'X':
+  anglex+=5;
+  break;
+  case 'c':
+    angley+=5;
+   break;
+  case 'C':
+    angley-=5;
+  break;
+  case 'z':
+    anglez+=5;
+    break;
+  case 'Z':
+   anglez-=5;
+   break;
+   
+   
+  }
+ glutPostRedisplay();
+}
+
+void reshape(int w, int h) {
+  glViewport(1, 1, w, h);
+  glMatrixMode(GL_PROJECTION);
+  glLoadIdentity();
+  gluPerspective(100.0, (GLfloat) w / (GLfloat) h, 0.5, 100.0);
+  glMatrixMode(GL_MODELVIEW);
+  glLoadIdentity();
+}
+void init (void) {
+
+ p = gluNewQuadric();
+}
+void init1(void)
+{
+GLfloat mat_specular[] = {1.0, 1.0, 1.0, 1.0};
+GLfloat white_light[] = {0.3, 0.3, 0.3, 1.0};
+glMaterialfv(GL_FRONT, GL_SPECULAR, mat_specular);
+glLightfv(GL_LIGHT0, GL_SPECULAR, white_light);
+
+}
+
+int main(int argc, char **argv)
+{
+  glutInit(&argc, argv);
+  glutInitDisplayMode(GLUT_DOUBLE | GLUT_RGB | GLUT_DEPTH);
+  glutInitWindowSize(width, height);
+  glutCreateWindow("GLASS");
+  glutInitWindowPosition(100,100);
+  init();
+  init1();
+  glutReshapeFunc(reshape);
+  glutDisplayFunc(display);
+  glutKeyboardFunc(keyboard);
+  glutMainLoop();
+  return 0;
+}

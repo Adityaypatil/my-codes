@@ -1,0 +1,81 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+struct node 
+{
+  int data;
+  struct node *next;
+}*head=NULL;
+
+
+
+struct node *insert(struct node *head,int data)
+{
+  struct node *curr; 
+  struct node *newnode=(struct node *)malloc(sizeof(struct node));
+  newnode->data=data;
+  newnode->next=NULL;
+
+  if(head==NULL)
+    {
+      head=newnode;
+      curr=newnode;
+    }
+  else
+    {
+      curr->next=newnode;
+      curr=newnode;
+    }
+  return head;
+}
+
+
+
+
+
+struct node *insert_sorted_way(struct node *head,int data)
+{
+  struct node *newnode=(struct node *)malloc(sizeof(struct node ));
+  newnode->data=data;
+  newnode->next=NULL;
+
+  while(temp->data < data)
+    { 
+         
+
+
+    }
+
+
+}
+
+
+void display(struct node *head)
+{
+  struct node *temp=head;
+  while(temp!=NULL)
+    {
+      printf("%d-->",temp->data);
+      temp=temp->next;
+     }
+  printf("\n");
+
+}
+
+
+
+int main()
+{
+  head=insert(head,10);
+  insert(head,20);
+  insert(head,30);
+  insert(head,70);
+
+  display(head);
+
+
+  insert_soreted_way(head,50);
+
+  return 0;
+}

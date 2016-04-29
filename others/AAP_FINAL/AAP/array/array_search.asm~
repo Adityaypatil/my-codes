@@ -1,0 +1,22 @@
+secton .rodata
+	msg db "Numbeer is found",10,0
+	msg1 db "Number is not found",10,0
+	msg2 db "Enter the number to be search: ",10,0
+	msg3 db "%d"
+	
+section .data
+
+	array dq 10,20,30,40,50,-1
+section .bss
+	number resq 1
+	
+section .text
+	global main
+	extern printf,scanf
+
+main:	push msg2
+	push msg3
+	call scanf
+	add rsp,16
+	popa
+	

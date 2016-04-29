@@ -1,0 +1,25 @@
+section .rodata
+	msg db "hello pucsd",10,0
+	msg2 db "lenghth of string is: %d ",10,0
+	
+section .text
+	global main
+	extern printf
+
+main:	xor rsi,rsi
+	xor rcx,rcx
+
+l:	mov rsi,msg
+	cmp rsi,'/0'
+	je last
+	inc rcx
+	dec rdi
+	jmp l
+	
+last:	xor rcx, rcx
+	mov rdi,msg2
+	call printf
+
+	ret
+	
+	

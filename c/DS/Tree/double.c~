@@ -1,0 +1,57 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+
+struct node
+{
+  int data;
+  struct node *left=NULL;
+  struct node *right=NULL; 
+}*root=NULL;
+
+
+
+struct node *create(int data)
+{
+  struct node *newnode=(struct node *)malloc(sizeof(struct node));
+
+    newnode->data=data;
+    newnode->left=NULL:
+    newnode->right=NULL;
+
+  return newnode;
+}
+
+
+
+
+struct node *doube(struct node *root)
+{
+
+
+  if(root == NULL)
+    return ;
+  else
+    { 
+      oldleft=node->left;
+      node->left=create(node->data);
+      node->left->left=oldleft;
+    }
+  return new;
+
+}
+
+int main()
+{
+  root = create(1);
+  root->left = create(2);
+  root->right = create(3);
+  //root->left->left = newNode(1);
+  // root->left->right = newNode(4)
+  root=double(root);
+
+  display(root);
+
+
+}

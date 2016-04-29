@@ -1,0 +1,129 @@
+Grammar
+
+    0 $accept: line $end
+
+    1 line: S END
+
+    2 S: ATOKEN S ATOKEN
+    3  | ATOKEN B ATOKEN
+
+    4 B: BTOKEN B
+    5  | BTOKEN
+
+
+Terminals, with rules where they appear
+
+$end (0) 0
+error (256)
+ATOKEN (258) 2 3
+BTOKEN (259) 4 5
+END (260) 1
+
+
+Nonterminals, with rules where they appear
+
+$accept (6)
+    on left: 0
+line (7)
+    on left: 1, on right: 0
+S (8)
+    on left: 2 3, on right: 1 2
+B (9)
+    on left: 4 5, on right: 3 4
+
+
+State 0
+
+    0 $accept: . line $end
+
+    ATOKEN  shift, and go to state 1
+
+    line  go to state 2
+    S     go to state 3
+
+
+State 1
+
+    2 S: ATOKEN . S ATOKEN
+    3  | ATOKEN . B ATOKEN
+
+    ATOKEN  shift, and go to state 1
+    BTOKEN  shift, and go to state 4
+
+    S  go to state 5
+    B  go to state 6
+
+
+State 2
+
+    0 $accept: line . $end
+
+    $end  shift, and go to state 7
+
+
+State 3
+
+    1 line: S . END
+
+    END  shift, and go to state 8
+
+
+State 4
+
+    4 B: BTOKEN . B
+    5  | BTOKEN .
+
+    BTOKEN  shift, and go to state 4
+
+    $default  reduce using rule 5 (B)
+
+    B  go to state 9
+
+
+State 5
+
+    2 S: ATOKEN S . ATOKEN
+
+    ATOKEN  shift, and go to state 10
+
+
+State 6
+
+    3 S: ATOKEN B . ATOKEN
+
+    ATOKEN  shift, and go to state 11
+
+
+State 7
+
+    0 $accept: line $end .
+
+    $default  accept
+
+
+State 8
+
+    1 line: S END .
+
+    $default  reduce using rule 1 (line)
+
+
+State 9
+
+    4 B: BTOKEN B .
+
+    $default  reduce using rule 4 (B)
+
+
+State 10
+
+    2 S: ATOKEN S ATOKEN .
+
+    $default  reduce using rule 2 (S)
+
+
+State 11
+
+    3 S: ATOKEN B ATOKEN .
+
+    $default  reduce using rule 3 (S)

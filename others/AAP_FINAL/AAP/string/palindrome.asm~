@@ -1,0 +1,27 @@
+section .rodata
+	msg db "String is palindrome",10,0
+	msg db "String is not palindrome",10,0
+
+section .data
+	msg1 db "nitin",10,0
+	len equ $-msg1
+
+section .text
+	global main
+	extern printf
+
+main:
+	mov rsi,msg1
+	mov rdi,len
+
+	cmp dword[rsi],dword[rdi]
+	jne exit
+	inc rsi
+	dec rdi
+
+
+
+
+	
+exit:
+	ret

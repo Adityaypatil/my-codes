@@ -1,0 +1,10 @@
+#include<stdio.h>
+#include<stlib.h>
+
+
+struct Queue
+{
+  int data;
+  struct node *next;
+}*front=NULL;*rear=NULL;
+

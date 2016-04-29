@@ -1,0 +1,54 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+
+struct node
+{
+int data;
+struct node *next;
+};
+
+void creat(struct node *root,int data)
+{
+struct node *temp=NULL,*curr=NULL;
+temp=(struct node*)malloc(sizeof(struct node ));
+temp->data=data;
+temp->next=NULL;
+
+
+if(root==NULL)
+	{
+	root=temp;
+	}
+else 
+	{
+		curr=root;
+		while(curr->next!=NULL)
+			{
+				curr=curr->next;	
+			}
+
+	}
+
+}
+
+void print(struct node *root)
+{
+while(root !=NULL)
+	{
+	printf("%d-->",root->data);
+	root=root->next;
+	}
+}
+
+int main()
+{
+struct node *root=NULL;
+
+creat(root,5);
+creat(root,6);
+
+print(root);
+
+
+}

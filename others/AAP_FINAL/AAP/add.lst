@@ -1,0 +1,21 @@
+     1                                  section .data
+     2 00000000 0A                      	a db 10
+     3                                  
+     4                                  section .bss
+     5 00000000 <res 00000008>          	c resq 1
+     6                                  
+     7                                  section .text
+     8                                  	global main
+     9                                  	extern printf
+    10                                  
+    11                                  main:
+    12                                  	mov rax,10
+    13          ******************       error: instruction not supported in 32-bit mode
+    14                                  	mov rax,200
+    15          ******************       error: instruction not supported in 32-bit mode
+    16                                  	mov rax,1000
+    17          ******************       error: instruction not supported in 32-bit mode
+    18                                  	mov rax,10000
+    19          ******************       error: instruction not supported in 32-bit mode
+    20                                  	mov rax,100000
+    21          ******************       error: instruction not supported in 32-bit mode

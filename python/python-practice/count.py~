@@ -1,0 +1,12 @@
+l = [1,2,3,4,5]
+
+length = len(l)
+
+def cnt(l):
+	c=0
+	for i in range (length):
+		
+		c = c + 1
+
+	print c
+cnt(l)

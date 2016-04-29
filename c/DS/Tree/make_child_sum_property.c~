@@ -1,0 +1,48 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+struct node
+{
+  int data;
+  struct node *left;
+  struct node *right;
+}*root=NULL;
+
+
+
+struct node *create(struct node *root)
+{
+  struct node *newnode=(struct node *)malloc(sizeof(struct node));
+
+  newnode->data=data;
+  newnode->left=NULL;
+  newnode->right=NULL;
+
+  return newnode;
+}
+
+
+
+void display(struct node *root)
+{
+  if(root==NULL)
+    return 0;
+  else
+    {
+      display(root->left);
+      printf("%d",root->data);
+      display(root->right);
+    }
+}
+
+
+int main()
+{
+  root=create(10);
+  root->left=create(9);
+  root->right=create(10);
+
+  display(root);
+
+  return 0;
+}

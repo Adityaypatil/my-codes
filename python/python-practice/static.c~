@@ -1,0 +1,20 @@
+#include<stdio.h>
+
+void counter()
+{
+static int count1 =0; int count2;
+count1++; count2++;
+printf("%d %d\n",count1,count2);
+}
+
+
+
+
+
+
+void main()
+{
+counter();
+counter();
+counter();
+}

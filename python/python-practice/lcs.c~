@@ -1,0 +1,41 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int lis(int arr[],int n,int *max)
+{
+//printf("aaa\n");
+	if(n == 1)
+	
+		return 1;
+	
+	
+	int res,m = 1,i;
+	for(i = 1; i < n;i++)
+	{
+		res = lis(arr,i,max);
+		if(arr[i-1]<arr[n-1] && res +1>m)
+		m = res + 1;
+	}
+	if(*max < m)
+	{
+		*max = m;
+	}
+	
+	return m;
+}
+
+int l(int arr[],int n)
+{
+int max=1;
+
+	lis(arr,n,&max);
+
+return max;
+}
+
+int main()
+{
+	int arr[] = {10,22,9,33,21,50,41,60,80};
+	int n = 1;
+	printf("\n\t%d\n",l(arr,n));
+}

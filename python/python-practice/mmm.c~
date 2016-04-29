@@ -1,0 +1,23 @@
+int printf(const char *f,...);
+int main()
+{
+	int no,i,flag=0;
+	no=72;
+	for(i=2;i<=no/2;i++)
+	{
+		if(no%i==0)
+			{
+			
+				flag=1;
+				break;
+			}
+			
+	}
+	
+	if(flag==0)
+	{
+		printf("prime");
+	}
+	
+	return 0;	
+}

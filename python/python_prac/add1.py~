@@ -1,0 +1,20 @@
+import sys
+
+
+lst=[]
+lst1=[]
+def FileIoDemo(args):
+	f1=open(args[0],'r')
+	f2=open(args[1],'w')
+	while True:
+		lst=f1.readlines()
+		for i in lst:	
+			lst1.append(i.strip('\n'))
+			#print lst1
+		add=0
+		for i in lst1:
+			add=add+int(i)
+			f2.write((add))
+
+if __name__=="__main__":
+    FileIoDemo(sys.argv[1:])

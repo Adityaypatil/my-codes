@@ -1,0 +1,7 @@
+     1                                  section .text
+     2                                  	global main
+     3                                  	
+     4 00000000 88D8                    main:	mov al,bl
+     5 00000002 6689D8                  	mov ax,bx
+     6 00000005 89D8                    	mov eax,ebx
+     7 00000007 4889D8                  	mov rax,rbx

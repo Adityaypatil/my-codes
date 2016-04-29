@@ -1,0 +1,741 @@
+#include<stdio.h>
+#include<malloc.h>
+
+
+char memory[1000]={0};
+void *p=memory;
+
+
+// add reference cnt field
+struct UsedList
+{
+	void * start;
+	int size;
+	int ref;
+	struct UsedList *next;
+};
+
+struct FreeList
+{
+	void * start;
+	int size;
+	struct FreeList *next;
+};
+
+
+struct UsedList *first=NULL;
+struct FreeList *second=NULL;
+
+//Linklist Function To Maintain UsedList
+int InsertLast(struct UsedList **Head,void *start,int size,int ref)
+{
+	
+	struct UsedList *newnode=NULL;
+	struct UsedList *temp=*Head;
+	
+	newnode=(struct UsedList *)malloc(sizeof(struct UsedList));
+	
+	newnode->start=start;
+	newnode->size=size;
+	newnode->ref=1;
+	newnode->next=NULL;
+	
+	if(*Head==NULL)
+	{
+		*Head=newnode;
+	    	
+	}
+	else if(temp->next==NULL)
+	{
+			temp->next=newnode;
+			newnode->next=NULL;
+	}
+	else
+	{
+			while(temp->next!=NULL)
+			{
+				temp=temp->next;
+			}
+			temp->next=newnode;
+			newnode->next=NULL;
+
+	}
+	
+return 1;
+}	
+int DeleteFirst(struct UsedList **Head)
+{
+	struct UsedList *temp=*Head;
+	
+	if(*Head==NULL)
+	{
+		return -1;
+	}
+	else
+	{
+		*Head=temp->next;
+		free(temp);
+	}
+	return 1;
+}
+int DeleteLast(struct UsedList **Head)
+{
+	struct UsedList *temp=*Head;
+	struct UsedList *temp1=*Head;
+
+	if(*Head==NULL)
+	{
+		return -1;
+	}
+	else
+	{
+
+		while(temp->next!=NULL)
+		{
+			temp1=temp;
+			temp=temp->next;
+		}
+			
+		temp1->next=NULL;
+		free(temp);			
+		
+		
+	}
+return 1;
+}
+int CountNode(struct UsedList *Head)
+{
+	int iCnt=0;
+	
+	while(Head != NULL)
+	{
+		iCnt++;	
+		Head=Head->next;
+	}
+	
+	return iCnt;
+}
+int DeleteAtPos(struct UsedList **Head,int pos)
+{
+	struct UsedList *temp=*Head;
+	struct UsedList *temp1=*Head;
+	
+	if(pos==1)	
+	{
+		DeleteFirst(Head);
+	}
+	else  if(pos>1 && pos< CountNode(*Head))
+	{
+		while((pos-1)>0)
+		{
+			temp1=temp;
+			temp=temp->next;	
+			pos--;
+		}
+		temp1->next=temp->next;
+		free(temp);
+		
+	}
+	else if(pos>= CountNode(*Head))
+	{
+		DeleteLast(Head);
+	}
+	return 1;
+}
+void display(struct UsedList *Head)
+{
+	int iCnt=1;
+	printf("\n\tUsed List Table");
+		printf("\n--Entry--\t --Start-- \t--Size-- \t--Reference--");
+	while(Head!=NULL)
+	{
+		printf("\n|  %d   |\t| %d |\t|  %d  |\t|   %d   |",iCnt,Head->start,Head->size,Head->ref);
+		printf("\n");
+		iCnt++;
+		Head=Head->next;
+	}
+
+}
+//Linklist Function To Maintain FreeList
+int InsertLast(struct FreeList **Head,void *start,int size)
+{
+	
+	struct FreeList *newnode=NULL;
+	struct FreeList *temp=*Head;
+	
+	newnode=(struct FreeList *)malloc(sizeof(struct FreeList));
+	
+	newnode->start=start;
+	newnode->size=size;
+	newnode->next=NULL;
+	
+	if(*Head==NULL)
+	{
+		*Head=newnode;
+	    	
+	}
+	else if(temp->next==NULL)
+	{
+			temp->next=newnode;
+			newnode->next=NULL;
+	}
+	else
+	{
+			while(temp->next!=NULL)
+			{
+				temp=temp->next;
+			}
+			temp->next=newnode;
+			newnode->next=NULL;
+	}
+	
+return 1;
+}	
+int DeleteFirst(struct FreeList **Head)
+{
+	struct FreeList *temp=*Head;
+
+	if(*Head==NULL)
+	{
+		return -1;
+	}
+	else
+	{
+		*Head=temp->next;
+		free(temp);
+	}
+	return 1;
+}
+int DeleteLast(struct FreeList **Head)
+{
+	struct FreeList *temp=*Head;
+	struct FreeList *temp1=*Head;
+
+	if(*Head==NULL)
+	{
+		return -1;
+	}
+	else
+	{
+
+		while(temp->next!=NULL)
+		{
+			temp1=temp;
+			temp=temp->next;
+		}
+			
+		temp1->next=NULL;
+		free(temp);			
+		
+		
+	}
+return 1;
+}
+int CountNode(struct FreeList *Head)
+{
+	int iCnt=0;
+	
+	while(Head != NULL)
+	{
+		iCnt++;	
+		Head=Head->next;
+	}
+	
+	return iCnt;
+}
+int DeleteAtPos(struct FreeList **Head,int pos)
+{
+	struct FreeList *temp=NULL;
+	struct FreeList *temp1=NULL;
+	
+	if(pos==1)	
+	{
+		DeleteFirst(Head);
+	}
+	else  if(pos>1 && pos< CountNode(*Head))
+	{
+		while(pos!=0)
+		{
+			temp1=temp;
+			temp=temp->next;	
+			pos--;
+		}
+		temp1->next=temp->next;
+		free(temp);
+		
+	}
+	else if(pos> CountNode(*Head))
+	{
+		DeleteLast(Head);
+	
+	}
+	return 1;
+}
+void display(struct FreeList *Head)
+{
+	printf("\n\tFree List Table");
+		printf("\n --Start-- \t--Size-- \t");
+	while(Head!=NULL)
+	{
+		printf("\n| %d |\t|  %d  |\t",Head->start,Head->size);
+		printf("\n");	
+		Head=Head->next;
+	}
+
+}
+void ReferenceCount(struct UsedList **Head, int Entry)
+{
+
+	struct UsedList *temp = *Head;
+	
+	while((Entry-1)!=0)
+	{
+		
+		temp = temp -> next;
+		Entry--;
+	}
+	
+	temp->ref= temp->ref +1;
+
+}
+void* my_malloc(int size)
+{
+	int temp=0,ref=0;
+	static int sum=0;
+	sum=sum+size;
+	p=((char *e)p+size);
+	InsertLast(&first,(char *)p-size,size,ref);					//Usedlist entry
+	InsertLast(&second,p,(sizeof(memory)-sum));					//Freelist entry
+	return p;
+}
+
+
+// free the memory if reference cnt is 0
+void my_free(void* s)
+{
+	int iCnt=1;
+	struct UsedList *temp=first;
+	while(temp!=NULL)
+	{
+		if(s== (temp->start))
+		{
+			if(temp->ref==1)
+		{
+		InsertLast(&second,temp->start,temp->size);
+		DeleteAtPos(&first,iCnt);
+		break;
+		}
+		else
+		{
+			temp->ref=temp->ref-1;
+		}
+	}
+	iCnt++;
+	temp=temp->next;
+}
+
+}
+void* my_realloc(int Entry,int size)
+{
+	struct UsedList *temp=first;
+	while((Entry-1)!=0)
+	{
+		temp=temp->next;
+		Entry--;
+	}
+	if(temp->size<size)
+	{
+		my_free(temp->start);
+		p=my_malloc(size);
+	}
+	else
+	{
+		temp->size=size;
+	}
+return p;
+}
+
+void my_memcpy(char *src,int dEntry,int nbytes)
+{
+	struct UsedList *temp=first;
+	int bytes = nbytes;
+
+
+
+	
+	while((dEntry-1)!=0)
+	{
+		temp=temp->next;
+		dEntry--;
+	}
+	char *dest=(char *)temp->start;
+	while(nbytes!=0)
+	{
+		*dest=*src;
+		src++;
+		dest++;
+		nbytes--;
+	}
+	*dest='\0';
+	dest=dest-bytes;
+	printf("\n\t After copying to address:- %u \n\tcontents are:- \t ",dest);
+	while(*dest!='\0')
+	{
+			printf("%c",*dest);
+			dest++;
+	}
+}
+
+int my_memcmp(char *s1,char *s2,int bytes)
+{
+	int flag=0;
+while(*s1!='\0'  && *s2!='\0')
+{
+	if(*s1==*s2)
+	{
+		s1++;
+		s2++;
+		flag=1;
+	}
+	else
+		if(*s1>*s2)
+		{
+			flag=0;
+			return 1;
+		}
+		else
+		{
+			flag=0;
+			return -1;
+		}
+}
+if(flag==1)
+{
+	return 0;
+}
+
+}
+
+void my_memset(char *src,char c,int bytes)
+{
+	char *temp=src;
+while(bytes!=0)
+	{
+		*temp=c;
+		temp++;
+		bytes--;
+	}
+	printf("\n\t After memory setting to address:- %u \n\tcontents are:- \t ",src);
+	while(*src!='\0')
+	{
+			printf("%c",*src);
+			src++;
+	}
+}
+
+void* my_memmove(char  *dest,char * src,int bytes)
+{
+	int nbytes=bytes;
+	while(bytes!=0)
+	{
+		*dest=*src;
+		src++;
+		dest++;
+		bytes--;
+	}
+//	*dest='\0';
+	dest=dest-nbytes;
+	printf("\n\t After copying to address:- %u \n\tcontents are:- \t ",dest);
+	while(*dest!='\0')
+	{
+			printf("%c",*dest);
+			dest++;
+	}
+	dest=dest-nbytes;
+
+return dest;
+}
+
+void* my_memchr(char *src,char c,int bytes)
+{
+	char *temp=src;
+	while(bytes!=0)
+	{
+		if(*temp!=c)
+		{
+			temp++;
+			bytes--;
+		}
+		else
+		{
+			return temp;
+		}
+	}
+	
+}
+
+
+
+void* initialize_memory()
+{
+	struct UsedList *temp=first;
+
+	int Entry=0,i=0;
+	char str[50];
+	printf("\n\tEnter the memory entry you want to initialise :- ");
+	scanf("%d",&Entry);
+	fflush(stdin);
+	printf("\n\tEnter the data :-  ");
+	scanf("%[^\n]",&str);
+	fflush(stdin);
+	
+	while((Entry-1)!=0)
+	{
+		temp=temp->next;
+		Entry--;
+	}
+char *s=(char *)temp->start;
+	while(str[i]!='\0')
+	{
+		s[i]=str[i];
+		i++;
+		//s++;
+	}
+	s[i]='\0';
+	return s;
+}
+
+
+void RefCountDecrement(struct UsedList **Head, int Entry)
+{
+	
+	struct UsedList *temp = *Head;
+	
+	while((Entry-1)!=0)
+	{
+		
+		temp = temp -> next;
+		Entry--;
+	}
+	
+	temp->ref= temp->ref - 1;
+}        
+void Sweep(void *s)
+{
+	int iCnt=1;
+	struct UsedList *temp=first;
+	while(temp->next!=NULL)
+	{
+		if((temp->start) == s)
+		{
+			InsertLast(&second,temp->start,temp->size);
+			DeleteAtPos(&first,iCnt);
+			break;
+		}
+		iCnt++;
+		temp=temp->next;
+	}
+
+	
+}
+void  Mark()
+{
+		struct UsedList *temp=first;
+
+		while(temp->next != NULL)
+		{
+			if(temp->ref == 0)
+			{
+				Sweep(temp->start);
+				break;					
+			}
+			else
+			{
+				temp = temp->next;
+				//printf("\n\t All Objects Are Live Objects ")
+			}
+		}
+		
+}
+
+
+
+int main()
+{
+	
+	int nbytes,ch=0;
+	printf("\nBase address of memory is:-  %u",memory);
+
+do
+{
+printf("\n\n 1.Bytes allocation\n 2.Display Table\n 3.Free memory\n 4.Refere The Memory\n 5.Reallocate the memory\n 6.Memory Copy (memcpy)\n 7.Memory Compair (memcmp)\n 8.Memory set (memset)\n 9.Memory Move (memmov) \n10.In memory search first ocuurence of character\n11.Decrement Reference count\n12.Mark & Sweep Garbage Collector\n13.Exit");
+printf("\nEnter your choice:-  ");
+scanf("%d",&ch);
+switch(ch)
+{
+case 1:{																			//Bytes allocation
+	printf("\nEnter no of bytes:- ");
+			scanf("%d",&nbytes);
+			p = my_malloc(nbytes);
+			printf("\nAfter allcating bytes address is :- %u",(char *)p-nbytes);
+	   }break;
+
+
+case 2:{																			//Display table
+			display(first);
+			display(second);
+		}break;
+
+
+
+case 3:{																			//Free memory
+			int no=1;
+			struct UsedList *temp=first;
+		
+			printf("\n\t enter the address entry to be freed :-  ");
+			scanf("%d",&no);
+			if(no<1 || no > CountNode(first)+1)
+			{
+				printf("Enter proper address...");
+				break;
+			}
+			while(no-1>0)
+			{
+				temp=temp->next;
+				no--;
+			}
+			my_free(temp->start);
+			printf("\nAfter freeing bytes address is:-  %u\n",memory);
+	   }break;
+
+
+
+case 4:{																			//Reference count
+			int iEntry = 0;
+			printf("\n\t Enter Memory Do u Want to Refer ");
+			printf("\n\t Enter the entry number:- ");
+			scanf("%d",&iEntry);
+			ReferenceCount(&first,iEntry);
+		 }break;
+
+case 5:{																			//Reallocate memory											
+			int iEntry = 0,iSize=0;
+			printf("\n\t Enter Memory  u Want to Reallocate ");
+			printf("\n\t Enter the entry number:- ");
+			scanf("%d",&iEntry);
+			printf("\n\tEnter the size:- ");
+			scanf("%d",&iSize);
+			
+			
+			
+			
+			
+			my_realloc(iEntry,iSize);
+		 }break;
+case 6:
+		{																					//memcpy
+				int dest=0,bytes=0;
+				void *src=NULL;
+				src=initialize_memory();
+
+				printf("\n\t Enter the memory entry you want to copy:-");
+				scanf(" %d",&dest);
+				printf("\n\t Enter the number of bytes:- ");
+				scanf(" %d",&bytes);
+				my_memcpy((char *)src,dest,bytes);
+		}break;
+case 7:
+	{																						//memcmp
+		int bytes=0,ret=0;
+				void *src=NULL;
+				void *dest=NULL;
+				printf("\n\tEnter first string :");
+				src=initialize_memory();
+				printf("\n\tEnter second string :");
+				dest=initialize_memory();
+
+				printf("\n\t Enter the number of bytes:- ");
+				scanf(" %d",&bytes);
+				ret=my_memcmp((char *)src,(char *)dest,bytes);
+				if(ret==0)
+				{
+					printf("\n\tStrings are equal");
+				}
+				else if(ret>0)
+					printf("\n\t First string is greater");
+				else
+					printf("\n\t First string is less ");
+	}break;
+
+case 8:{																					//memset
+				int bytes=0,ret=0;
+				char c;
+				void *src=NULL;
+				
+				src=initialize_memory();
+				printf("\n\t Enter character or value to set :- ");
+				scanf(" %c",&c);
+				printf("\n\t Enter the number of bytes:- ");
+				scanf(" %d",&bytes);
+				my_memset((char *)src,c,bytes);
+
+	   }break;
+
+case 9:{																					//memmov
+	
+				int bytes=0;
+				void *src=NULL;
+				void *dest=NULL;
+				void *p;
+				printf("\n\tEnter first string :");
+				src=initialize_memory();
+				printf("\n\tEnter second string :");
+				dest=initialize_memory();
+				
+				printf("\n\t Enter the number of bytes:- ");
+				scanf(" %d",&bytes);
+				p=my_memmove((char *)dest,(char *)src,bytes);
+								
+	   }break;
+
+case 10:
+	{																						//memchr
+				int bytes=0;
+				char c;
+				void *ret;
+				void *src=NULL;
+				
+				src=initialize_memory();
+				printf("\n\t Enter character or value to set :- ");
+				scanf(" %c",&c);
+				printf("\n\t Enter the number of bytes:- ");
+				scanf(" %d",&bytes);
+				ret=my_memchr((char *)src,c,bytes);
+				printf("\n\t %s",(char *)ret);
+	}break;
+
+case 11:{		
+			int iEntry = 0;
+			printf("\n\t Enter Memory Do u Want to Unrefer ");
+			printf("\n\t Enter the entry number:- ");
+			scanf("%d",&iEntry);
+			RefCountDecrement(&first,iEntry);
+				
+			}break;
+
+
+case 12:{																			//Mark Meathod
+				Mark();
+			}break;
+
+case 13:{																			//Mark Meathod
+				return 0;
+			}break;
+
+
+
+	return 0;
+
+}
+}while(ch!=13);
+}

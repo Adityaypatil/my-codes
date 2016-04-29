@@ -1,0 +1,8 @@
+#include<stdio.h>
+
+void main()
+{
+  staic int i=10;
+  printf("%d",i);
+  
+}

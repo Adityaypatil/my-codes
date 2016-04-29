@@ -1,0 +1,15 @@
+#include<stdio.h>
+
+int main()
+{
+int a=100;
+
+disp(&a);
+	printf("\nValue of a in main: %d",a);
+}
+
+int disp(int *a)
+{
+	a =a+100;
+	printf("\nValue of a in function : %d",a);
+}

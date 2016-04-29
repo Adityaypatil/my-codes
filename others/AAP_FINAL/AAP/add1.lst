@@ -1,0 +1,16 @@
+     1                                  section .data
+     2 00000000 0A                      	a db 10
+     3                                  
+     4                                  section .bss
+     5 00000000 <res 00000008>          	c resq 1
+     6                                  
+     7                                  section .text
+     8                                  	global main
+     9                                  	extern printf
+    10                                  
+    11                                  main:
+    12 00000000 B80A000000              	mov rax,10
+    13 00000005 B8C8000000              	mov rax,200
+    14 0000000A B8E8030000              	mov rax,1000
+    15 0000000F B810270000              	mov rax,10000
+    16 00000014 B8A0860100              	mov rax,100000

@@ -1,0 +1,17 @@
+#include<stdio.h>
+
+int add(int no1,int no2)
+{ int sum=0;
+	
+	sum = no1 +no2;
+ 	
+
+return sum;
+}
+void main()
+{
+int no1=5,no2=5,sum;
+add(no1,no2);
+sum=add(no1,no2);
+printf("Addition is :%d",sum);
+}
